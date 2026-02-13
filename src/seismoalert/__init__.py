@@ -1,3 +1,3 @@
 """SeismoAlert - Real-time earthquake monitor and anomaly detector."""
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-02-13
+
+### Fixed
+
+- CI badge URLs now point to correct repository (earthinversion/seismoalert)
+- Ruff lint errors: trailing whitespace in `alerts.py`, long lines in `client.py`
+
+### Changed
+
+- Removed `CLAUDE.md` from version control and added to `.gitignore`
+
 ## [0.1.0] - 2026-02-07
 
 ### Added

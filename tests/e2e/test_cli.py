@@ -31,7 +31,7 @@ class TestCLIVersion:
     def test_version(self, runner):
         result = runner.invoke(main, ["--version"])
         assert result.exit_code == 0
-        assert "0.1.0" in result.output
+        assert "0.1.1" in result.output
 
 
 class TestFetchCommand:
