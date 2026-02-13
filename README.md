@@ -24,7 +24,7 @@ pip install seismoalert
 For development:
 
 ```bash
-git clone https://github.com/utpalkumar/seismoalert.git
+git clone https://github.com/earthinversion/seismoalert.git
 cd seismoalert
 pip install -e ".[dev,test,docs]"
 ```
