@@ -1,0 +1,86 @@
+# ── Python bytecode & packaging ──────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+*.whl
+sdist/
+*.pyz
+*.pyzw
+
+# ── Virtual environments ────────────────────────────────────────
+.venv/
+venv/
+env/
+.conda/
+*.env
+
+# ── Testing & coverage ─────────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# ── Linting & formatting caches ────────────────────────────────
+.ruff_cache/
+.mypy_cache/
+.pytype/
+
+# ── Documentation build artifacts ──────────────────────────────
+docs/_build/
+
+# ── IDE & editor files ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.spyderproject
+.spyproject
+.ropeproject
+
+# ── OS generated files ─────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ── Secrets & credentials (never commit these) ─────────────────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.p12
+credentials.json
+secrets.json
+*secret*
+*.gpg
+
+# ── AI agent / tool local state ────────────────────────────────
+.claude/
+
+# ── Jupyter notebooks (checkpoints only) ───────────────────────
+.ipynb_checkpoints/
+
+# ── Generated output files ─────────────────────────────────────
+*.html
+!docs/**/*.html
+*.png
+!docs/**/*.png
+!README.md
+
+# ── Logs ────────────────────────────────────────────────────────
+*.log
+logs/
