@@ -34,7 +34,7 @@
     │
     WebhookAlert.send(alert)  → logs it
     EmailAlert.send(alert)    → logs it
-    
+
 """
 
 from __future__ import annotations

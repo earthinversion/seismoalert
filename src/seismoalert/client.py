@@ -79,7 +79,7 @@ class USGSClient:
             "orderby": "time",
         }
 
-        ## Avoids sending unnecessary parameters if they are not set, which can lead to more efficient queries and cleaner API requests.
+        # Avoid sending unset params for cleaner API requests.
         if min_magnitude is not None:
             params["minmagnitude"] = min_magnitude
         if max_magnitude is not None:
@@ -93,7 +93,7 @@ class USGSClient:
             response = self.session.get(
                 self.base_url, params=params, timeout=self.timeout
             )
-            response.raise_for_status() #checks for HTTP errors and raises an exception if the response status code indicates an error (4xx or 5xx).
+            response.raise_for_status()
         except (requests.exceptions.RequestException, ConnectionError) as exc:
             raise USGSClientError(
                 f"Failed to fetch earthquake data: {exc}"
