@@ -50,7 +50,7 @@ seismoalert = "seismoalert.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/earthinversion/seismoalert"
-Documentation = "https://earthinversion.github.io/seismoalert/"
+Documentation = "https://seismoalert.readthedocs.io/"
 Repository = "https://github.com/earthinversion/seismoalert"
 Issues = "https://github.com/earthinversion/seismoalert/issues"
 
