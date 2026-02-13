@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "seismoalert"
-version = "0.1.2"
+dynamic = ["version"]
 description = "Real-time earthquake monitor and anomaly detector using USGS data"
 readme = "README.md"
 license = "MIT"
@@ -53,6 +53,9 @@ Homepage = "https://github.com/utpalkumar/seismoalert"
 Documentation = "https://seismoalert.readthedocs.io"
 Repository = "https://github.com/utpalkumar/seismoalert"
 Issues = "https://github.com/utpalkumar/seismoalert/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "seismoalert.__version__"}
 
 [tool.setuptools.packages.find]
 where = ["src"]

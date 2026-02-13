@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-02-13
+
+### Changed
+
+- Use dynamic versioning in `pyproject.toml` — version now read from `__init__.py` (single source of truth)
+
+### Fixed
+
+- Version test in `test_cli.py` now imports `__version__` instead of hardcoding the version string
+
 ## [0.1.2] - 2026-02-13
 
 ### Changed

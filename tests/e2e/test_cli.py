@@ -4,6 +4,7 @@ import pytest
 import responses
 from click.testing import CliRunner
 
+from seismoalert import __version__
 from seismoalert.cli import main
 
 pytestmark = pytest.mark.e2e
@@ -31,7 +32,7 @@ class TestCLIVersion:
     def test_version(self, runner):
         result = runner.invoke(main, ["--version"])
         assert result.exit_code == 0
-        assert "0.1.1" in result.output
+        assert __version__ in result.output
 
 
 class TestFetchCommand:
