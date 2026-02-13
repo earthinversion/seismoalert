@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Version test in `test_cli.py` now imports `__version__` instead of hardcoding the version string
+- Github Pages changes to Actions
 
 ## [0.1.2] - 2026-02-13
 
