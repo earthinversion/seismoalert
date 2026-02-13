@@ -1,7 +1,7 @@
 # SeismoAlert
 
-[![CI](https://github.com/utpalkumar/seismoalert/actions/workflows/ci.yml/badge.svg)](https://github.com/utpalkumar/seismoalert/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/utpalkumar/seismoalert/branch/main/graph/badge.svg)](https://codecov.io/gh/utpalkumar/seismoalert)
+[![CI](https://github.com/earthinversion/seismoalert/actions/workflows/ci.yml/badge.svg)](https://github.com/earthinversion/seismoalert/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/earthinversion/seismoalert/branch/main/graph/badge.svg)](https://codecov.io/gh/earthinversion/seismoalert)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 
