@@ -84,3 +84,6 @@ secrets.json
 # ── Logs ────────────────────────────────────────────────────────
 *.log
 logs/
+
+# - AI Agents Configs
+CLAUDE.md
