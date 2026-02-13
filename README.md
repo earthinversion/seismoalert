@@ -62,7 +62,7 @@ pytest -m e2e
 
 ## Documentation
 
-Full documentation is available at [seismoalert.readthedocs.io](https://seismoalert.readthedocs.io).
+Full documentation is available at [earthinversion.github.io/seismoalert](https://earthinversion.github.io/seismoalert/).
 
 To build locally:
 

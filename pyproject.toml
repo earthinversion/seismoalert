@@ -49,10 +49,10 @@ docs = [
 seismoalert = "seismoalert.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/utpalkumar/seismoalert"
-Documentation = "https://seismoalert.readthedocs.io"
-Repository = "https://github.com/utpalkumar/seismoalert"
-Issues = "https://github.com/utpalkumar/seismoalert/issues"
+Homepage = "https://github.com/earthinversion/seismoalert"
+Documentation = "https://earthinversion.github.io/seismoalert/"
+Repository = "https://github.com/earthinversion/seismoalert"
+Issues = "https://github.com/earthinversion/seismoalert/issues"
 
 [tool.setuptools.dynamic]
 version = {attr = "seismoalert.__version__"}
