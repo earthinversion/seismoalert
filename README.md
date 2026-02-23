@@ -45,6 +45,45 @@ seismoalert map --output earthquakes.html
 seismoalert monitor --min-magnitude 4.0
 ```
 
+## Makefile Workflow
+
+I can use the project `Makefile` as a single entrypoint for installation, running, stopping, and common development commands.
+
+```bash
+# Show all available commands
+make help
+
+# Install package locally
+make install
+
+# Install with dev/test/docs extras
+make install-dev
+
+# Start background monitor loop
+make run
+
+# Check whether the monitor is running
+make status
+
+# Stop background monitor loop
+make close
+```
+
+I can also run CLI and development tasks from the same file:
+
+```bash
+# CLI wrappers
+make fetch ARGS="--days 2 --min-magnitude 3.0"
+make analyze ARGS="--days 30 --window-days 7"
+make map ARGS="--output earthquakes.html"
+make monitor ARGS="--alert-magnitude 6.5"
+
+# Quality and docs
+make lint
+make test
+make docs
+```
+
 ## Testing
 
 ```bash
