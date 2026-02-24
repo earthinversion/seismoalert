@@ -14,6 +14,7 @@ Real-time earthquake monitor and anomaly detector using USGS earthquake data.
 - **Interactive maps**: Generate interactive Folium maps of earthquake locations
 - **Alerting**: Configurable threshold-based alert system with webhook/email stubs
 - **CLI**: Command-line interface for fetching, analyzing, and visualizing data
+- **CSV export**: `fetch` writes all fetched events to CSV (`earthquakes.csv` by default)
 
 ## Installation
 
@@ -34,6 +35,9 @@ pip install -e ".[dev,test,docs]"
 ```bash
 # Fetch recent earthquakes (last 24 hours, M2.5+)
 seismoalert fetch --min-magnitude 2.5 --days 1
+
+# Fetch and save all fetched events to a CSV file
+seismoalert fetch --days 2 --min-magnitude 3.0 --output-csv earthquakes.csv
 
 # Run statistical analysis
 seismoalert analyze --min-magnitude 1.0 --days 30

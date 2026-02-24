@@ -87,3 +87,5 @@ logs/
 
 # - AI Agents Configs
 CLAUDE.md
+
+.run

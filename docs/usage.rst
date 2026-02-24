@@ -19,6 +19,9 @@ Fetch recent earthquakes from the USGS API:
    # Last 7 days, M4.0+
    seismoalert fetch --days 7 --min-magnitude 4.0
 
+   # Save fetched events to CSV
+   seismoalert fetch --days 2 --min-magnitude 3.0 --output-csv earthquakes.csv
+
 Analyze Seismicity
 ~~~~~~~~~~~~~~~~~~
 

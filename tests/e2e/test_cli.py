@@ -1,5 +1,7 @@
 """End-to-end tests for the CLI."""
 
+import csv
+
 import pytest
 import responses
 from click.testing import CliRunner
@@ -37,27 +39,47 @@ class TestCLIVersion:
 
 class TestFetchCommand:
     def test_fetch_default(self, runner, mock_api):
-        result = runner.invoke(main, ["fetch"])
-        assert result.exit_code == 0
-        assert "Fetched" in result.output
-        assert "earthquakes" in result.output
+        with runner.isolated_filesystem():
+            result = runner.invoke(main, ["fetch"])
+            assert result.exit_code == 0
+            assert "Fetched" in result.output
+            assert "earthquakes" in result.output
+            assert "Saved" in result.output
 
     def test_fetch_with_options(self, runner, mock_api):
-        result = runner.invoke(main, ["fetch", "--days", "7", "--min-magnitude", "3.0"])
-        assert result.exit_code == 0
-        assert "Fetched" in result.output
+        with runner.isolated_filesystem():
+            result = runner.invoke(
+                main, ["fetch", "--days", "7", "--min-magnitude", "3.0"]
+            )
+            assert result.exit_code == 0
+            assert "Fetched" in result.output
 
     def test_fetch_shows_top_events(self, runner, mock_api):
-        result = runner.invoke(main, ["fetch"])
-        assert result.exit_code == 0
-        assert "Top events" in result.output
-        assert "M7.2" in result.output
+        with runner.isolated_filesystem():
+            result = runner.invoke(main, ["fetch"])
+            assert result.exit_code == 0
+            assert "Top events" in result.output
+            assert "M7.2" in result.output
 
     def test_fetch_help(self, runner):
         result = runner.invoke(main, ["fetch", "--help"])
         assert result.exit_code == 0
         assert "--days" in result.output
         assert "--min-magnitude" in result.output
+        assert "--output-csv" in result.output
+
+    def test_fetch_writes_csv(self, runner, mock_api, tmp_path):
+        output_csv = tmp_path / "fetched_events.csv"
+        result = runner.invoke(main, ["fetch", "--output-csv", str(output_csv)])
+        assert result.exit_code == 0
+        assert output_csv.exists()
+
+        with output_csv.open(newline="", encoding="utf-8") as csvfile:
+            rows = list(csv.DictReader(csvfile))
+
+        assert len(rows) == 10
+        assert rows[0]["id"] == "eq001"
+        assert "time_utc" in rows[0]
 
     def test_fetch_api_error(self, runner):
         with responses.RequestsMock() as rsps:

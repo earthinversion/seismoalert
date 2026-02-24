@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
+import csv
 import sys
 from datetime import UTC, datetime, timedelta
+from pathlib import Path
 
 import click
 
@@ -16,6 +18,7 @@ from seismoalert.alerts import (
 )
 from seismoalert.analyzer import detect_anomalies, gutenberg_richter
 from seismoalert.client import USGSClient, USGSClientError
+from seismoalert.models import EarthquakeCatalog
 from seismoalert.visualizer import create_earthquake_map
 
 
@@ -23,6 +26,44 @@ from seismoalert.visualizer import create_earthquake_map
 @click.version_option(version=__version__, prog_name="seismoalert")
 def main():
     """SeismoAlert - Real-time earthquake monitor and anomaly detector."""
+
+
+def _write_catalog_csv(catalog: EarthquakeCatalog, output_csv: str) -> Path:
+    """Write fetched events to a CSV file and return the saved path."""
+    output_path = Path(output_csv).expanduser()
+    if str(output_path.parent) not in {"", "."}:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with output_path.open("w", newline="", encoding="utf-8") as csvfile:
+        writer = csv.DictWriter(
+            csvfile,
+            fieldnames=[
+                "id",
+                "time_utc",
+                "latitude",
+                "longitude",
+                "depth_km",
+                "magnitude",
+                "place",
+                "url",
+            ],
+        )
+        writer.writeheader()
+        for eq in catalog:
+            writer.writerow(
+                {
+                    "id": eq.id,
+                    "time_utc": eq.time.strftime("%Y-%m-%d %H:%M:%S UTC"),
+                    "latitude": eq.latitude,
+                    "longitude": eq.longitude,
+                    "depth_km": eq.depth,
+                    "magnitude": eq.magnitude,
+                    "place": eq.place,
+                    "url": eq.url,
+                }
+            )
+
+    return output_path.resolve()
 
 
 @main.command()
@@ -35,7 +76,13 @@ def main():
 @click.option(
     "--limit", default=100, help="Max number of events.", show_default=True
 )
-def fetch(days: int, min_magnitude: float, limit: int):
+@click.option(
+    "--output-csv",
+    default="earthquakes.csv",
+    help="Output CSV file for fetched events.",
+    show_default=True,
+)
+def fetch(days: int, min_magnitude: float, limit: int, output_csv: str):
     """Fetch recent earthquakes from the USGS API."""
     client = USGSClient()
     endtime = datetime.now(UTC)
@@ -55,6 +102,13 @@ def fetch(days: int, min_magnitude: float, limit: int):
     msg = f"Fetched {len(catalog)} earthquakes "
     msg += f"(M>={min_magnitude}, last {days} day(s))"
     click.echo(msg)
+    try:
+        output_path = _write_catalog_csv(catalog, output_csv=output_csv)
+    except OSError as exc:
+        click.echo(f"Error writing CSV: {exc}", err=True)
+        sys.exit(1)
+    click.echo(f"Saved {len(catalog)} events to {output_path}")
+
     if len(catalog) > 0:
         click.echo(f"Largest event: M{catalog.max_magnitude:.1f}")
         sorted_cat = catalog.sort_by_magnitude()
